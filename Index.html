@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f0e5">
+<title>Logesh & Ramya — Wedding Invitation</title>
+
+<!--
+IMAGE CONFIGURATION
+Replace only the values inside this JSON when you add your real photographs.
+Example: "hero_left": "images/logesh-ramya-01.jpg"
+The page automatically falls back to an elegant photo placeholder if a file is not found.
+-->
+<script type="application/json" id="invitation-images">
+{
+  "hero_left": "images/pre-wedding-01.jpg",
+  "hero_center": "images/pre-wedding-02.jpg",
+  "hero_right": "images/pre-wedding-03.jpg",
+  "story_background": "images/pre-wedding-04.jpg",
+  "quote_background": "images/pre-wedding-05.jpg",
+  "venue_background": "images/pre-wedding-06.jpg",
+  "footer_background": "images/pre-wedding-07.jpg",
+  "fallbacks": {
+    "hero_left": "https://placehold.co/900x1300/d6ddd0/52633f?text=Our+Story",
+    "hero_center": "https://placehold.co/900x1300/c8cfc2/52633f?text=Together",
+    "hero_right": "https://placehold.co/900x1300/dde1d7/52633f?text=Forever",
+    "story_background": "https://placehold.co/1800x1200/d7ddd1/52633f?text=Our+Journey",
+    "quote_background": "https://placehold.co/1800x1200/e1dfd3/52633f?text=With+Love",
+    "venue_background": "https://placehold.co/1800x1200/d2d9cc/52633f?text=Our+Wedding+Day",
+    "footer_background": "https://placehold.co/1800x1000/cdd5c7/52633f?text=Forever+Begins"
+  }
+}
+</script>
+
+<style>
+:root{
+  --paper:#f5f1e7;
+  --paper-deep:#ebe6d8;
+  --sage:#52633f;
+  --sage-soft:#748267;
+  --gold:#b89c69;
+  --white:#fffdf7;
+  --line:rgba(82,99,63,.18);
+  --shadow:0 25px 70px rgba(52,65,39,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--sage);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Botanical corners */
+.botanical{position:absolute;width:210px;height:230px;z-index:3;pointer-events:none;opacity:.7}
+.botanical.tl{top:-28px;left:-30px}.botanical.tr{top:-28px;right:-30px;transform:scaleX(-1)}
+.botanical.bl{bottom:-50px;left:-30px;transform:rotate(7deg)}.botanical.br{bottom:-50px;right:-30px;transform:scaleX(-1) rotate(7deg)}
+.botanical i{position:absolute;display:block;width:50px;height:92px;border:1px solid #74816d;background:#aeb9a7;border-radius:100% 0 100% 0;transform-origin:bottom left}
+.botanical i:nth-child(1){left:30px;top:8px;transform:rotate(-38deg)}
+.botanical i:nth-child(2){left:72px;top:65px;width:43px;height:78px;transform:rotate(-10deg)}
+.botanical i:nth-child(3){left:8px;top:82px;width:47px;height:84px;transform:rotate(-72deg)}
+.botanical i:nth-child(4){left:112px;top:118px;width:38px;height:68px;transform:rotate(4deg)}
+.botanical i:nth-child(5){left:48px;top:145px;width:44px;height:76px;transform:rotate(-34deg)}
+
+/* Hero */
+.hero{min-height:100svh;position:relative;padding:45px 28px 60px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-inner{width:min(1180px,100%);position:relative;z-index:4;text-align:center}
+.hero-images{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1090px;margin:0 auto 72px;align-items:start}
+.hero-photo{height:min(68vh,690px);min-height:470px;position:relative;overflow:hidden;background:#d6ddd0;box-shadow:var(--shadow);border:1px solid rgba(82,99,63,.15);background-position:center;background-size:cover}
+.hero-photo:nth-child(2){margin-top:30px}
+.hero-photo:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.03) 45%,rgba(24,32,18,.27));z-index:1}
+.hero-photo .date-number{position:absolute;z-index:2;bottom:16px;left:0;right:0;color:#fffdf5;font:400 clamp(72px,9vw,132px)/.8 Georgia,serif;letter-spacing:-.08em;text-shadow:0 4px 18px rgba(0,0,0,.15)}
+.eyebrow{font-size:12px;letter-spacing:.25em;line-height:1.6;margin:0 auto 18px;max-width:780px}
+.names{font-family:"Brush Script MT","Segoe Script",cursive;font-weight:400;font-size:clamp(68px,10vw,130px);line-height:.8;letter-spacing:-.04em;margin:0}
+.amp{font:400 .52em Georgia,serif;margin:0 13px;vertical-align:middle}
+.date-line{font-size:12px;letter-spacing:.19em;margin:30px auto 0;line-height:1.8}
+.scroll-cue{font-size:9px;letter-spacing:.25em;margin-top:38px;opacity:.7}.scroll-cue b{display:block;width:1px;height:46px;background:var(--sage);margin:10px auto 0;animation:pulseLine 1.6s ease-in-out infinite}
+@keyframes pulseLine{0%,100%{transform:scaleY(.35);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+
+/* Shared sections */
+section{position:relative;padding:110px 24px}.wrap{width:min(1080px,100%);margin:auto}.label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:17px}.intro{max-width:690px;font-size:16px;line-height:1.85;color:#667158}h2{font:400 clamp(40px,6vw,72px)/1.02 Georgia,serif;margin:0 0 24px;letter-spacing:-.035em}
+
+/* Countdown */
+.countdown-section{background:var(--paper-deep);overflow:hidden}.countdown{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border:1px solid var(--line);background:rgba(82,99,63,.14)}.time-box{padding:32px 10px;text-align:center;background:var(--paper-deep)}.time-box strong{display:block;font:400 clamp(40px,7vw,82px)/1 Georgia,serif}.time-box span{font-size:9px;letter-spacing:.22em;text-transform:uppercase}.count-note{text-align:center;font-size:11px;letter-spacing:.16em;margin-top:21px}
+
+/* Events */
+.events-section{background:var(--paper)}.events{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}.event{position:relative;padding:46px;background:rgba(255,253,247,.7);border:1px solid var(--line);box-shadow:0 18px 50px rgba(52,65,39,.07);overflow:hidden}.event:after{content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(184,156,105,.25);border-radius:50%;right:-75px;top:-75px}.event-number{font:400 62px/1 Georgia,serif;color:#a79b78}.event h3{font:400 35px/1.1 Georgia,serif;margin:17px 0 12px}.event p{color:#68715d;line-height:1.75;margin:7px 0}.event-date{display:inline-block;margin-top:17px;padding:9px 13px;border:1px solid var(--line);font-size:9px;letter-spacing:.17em}
+
+/* Full-width image moments */
+.image-moment{min-height:68vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background-position:center;background-size:cover;background-attachment:fixed}.image-moment:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,39,24,.64),rgba(30,39,24,.14),rgba(30,39,24,.4))}.moment-card{position:relative;z-index:2;width:min(790px,92%);padding:65px 55px;text-align:center;color:#fffdf7;background:rgba(30,39,24,.35);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(5px);box-shadow:0 25px 80px rgba(0,0,0,.16)}.moment-card .label{color:#fffdf7}.moment-card h2{margin-bottom:15px}.moment-card p{max-width:620px;margin:auto;line-height:1.8;font-size:15px}
+
+/* Quote */
+.quote{padding:125px 24px;text-align:center;background:var(--paper)}.quote-mark{font:400 80px/0 Georgia,serif;color:var(--gold)}blockquote{font:400 clamp(29px,4.4vw,57px)/1.25 Georgia,serif;max-width:900px;margin:45px auto 28px;letter-spacing:-.02em}.quote small{font-size:9px;letter-spacing:.25em}
+
+/* Venue */
+.venue{position:relative;min-height:650px;display:flex;align-items:center;overflow:hidden;background-position:center;background-size:cover}.venue:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,241,231,.98) 0%,rgba(245,241,231,.9) 43%,rgba(245,241,231,.25) 100%)}.venue .wrap{position:relative;z-index:2}.venue-content{width:min(620px,100%)}.venue-card{margin-top:30px;padding:25px 28px;border-left:2px solid var(--gold);background:rgba(255,253,247,.65);backdrop-filter:blur(7px)}.venue-card strong{font-family:Georgia,serif;font-size:22px;font-weight:400}.venue-card p{line-height:1.7;color:#68715d}.btn{display:inline-flex;margin-top:22px;padding:14px 21px;background:var(--sage);color:#fff;border-radius:999px;font-size:10px;letter-spacing:.16em;transition:.25s}.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(82,99,63,.3)}
+
+footer{position:relative;min-height:430px;padding:100px 24px 70px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fffdf7;background-position:center;background-size:cover;overflow:hidden}footer:before{content:"";position:absolute;inset:0;background:rgba(37,49,29,.56)}footer .footer-inner{position:relative;z-index:2}.mini-names{font:400 clamp(58px,8vw,95px)/.9 "Brush Script MT","Segoe Script",cursive}footer p{font-size:9px;letter-spacing:.25em;margin-top:25px}
+
+/* Motion */
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}.petal{position:fixed;top:-25px;width:8px;height:12px;border-radius:100% 0 100% 0;background:#aeb9a7;opacity:.42;z-index:20;pointer-events:none;animation:fall linear infinite}@keyframes fall{0%{transform:translate3d(0,-30px,0) rotate(0)}50%{transform:translate3d(55px,55vh,0) rotate(180deg)}100%{transform:translate3d(-35px,110vh,0) rotate(360deg)}}
+
+@media(max-width:760px){
+  .hero{padding:25px 14px 50px}.hero-images{gap:7px;margin-bottom:48px}.hero-photo{height:55vh;min-height:350px}.hero-photo:nth-child(2){margin-top:14px}.hero-photo .date-number{font-size:clamp(53px,15vw,90px);bottom:13px}.eyebrow{font-size:9px;letter-spacing:.18em}.names{font-size:clamp(55px,16.5vw,90px)}.amp{margin:0 6px}.date-line{font-size:9px;letter-spacing:.12em}.scroll-cue{margin-top:28px}section{padding:78px 18px}.countdown{grid-template-columns:repeat(2,1fr)}.time-box{padding:25px 8px}.events{grid-template-columns:1fr;gap:16px}.event{padding:34px}.image-moment{min-height:560px;background-attachment:scroll}.moment-card{padding:42px 24px}.quote{padding:90px 18px}.venue{min-height:650px}.venue:before{background:linear-gradient(180deg,rgba(245,241,231,.96),rgba(245,241,231,.72))}.venue-card{padding:22px}.botanical{width:145px;height:175px;opacity:.55}.botanical i{transform:scale(.75)!important;transform-origin:top left}.botanical.tr,.botanical.br{transform:scaleX(-1)!important}.botanical.bl{transform:rotate(7deg)!important}.botanical.br{transform:scaleX(-1) rotate(7deg)!important}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.image-moment{background-attachment:scroll}}
+</style>
+</head>
+<body>
+<div class="botanical tl"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="botanical tr"><i></i><i></i><i></i><i></i><i></i></div>
+
+<main>
+  <section class="hero" id="home">
+    <div class="botanical bl"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="botanical br"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="hero-inner">
+      <div class="hero-images">
+        <div class="hero-photo" data-bg="hero_left"><div class="date-number">24</div></div>
+        <div class="hero-photo" data-bg="hero_center"><div class="date-number">10</div></div>
+        <div class="hero-photo" data-bg="hero_right"><div class="date-number">25</div></div>
+      </div>
+      <p class="eyebrow">WITH THE BLESSINGS OF OUR FAMILIES, WE INVITE YOU TO CELEBRATE WITH US</p>
+      <h1 class="names">Logesh <span class="amp">&amp;</span> Ramya</h1>
+      <p class="date-line">24 OCTOBER 2026 · ENGAGEMENT &nbsp; • &nbsp; 25 OCTOBER 2026 · WEDDING · TIRUNELVELI</p>
+      <div class="scroll-cue">SCROLL TO DISCOVER<b></b></div>
+    </div>
+  </section>
+
+  <section class="countdown-section" id="countdown">
+    <div class="wrap reveal">
+      <div class="label">THE BIG DAY</div>
+      <h2>Counting every<br>moment to forever.</h2>
+      <p class="intro">Join us for our wedding ceremony on <strong>25 October 2026 at 10:30 AM</strong> at Venkatachalapathi Temple, Tirunelveli. Your presence and blessings will make our celebration truly special.</p>
+      <div class="countdown" id="timer">
+        <div class="time-box"><strong id="days">00</strong><span>Days</span></div>
+        <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+        <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+      </div>
+      <div class="count-note">25 OCTOBER 2026 &nbsp; / &nbsp; 10:30 AM</div>
+    </div>
+  </section>
+
+  <section class="events-section" id="events">
+    <div class="wrap reveal">
+      <div class="label">CELEBRATIONS</div>
+      <h2>Two beautiful<br>moments. One forever.</h2>
+      <div class="events">
+        <article class="event">
+          <div class="event-number">24</div>
+          <h3>Engagement</h3>
+          <p><strong>6:00 PM — 8:00 PM</strong></p>
+          <p>Thanga Mahal, opposite Krishnapuram Checkpost, near the Arch, Tirunelveli.</p>
+          <span class="event-date">24 OCTOBER 2026</span>
+        </article>
+        <article class="event">
+          <div class="event-number">25</div>
+          <h3>Wedding</h3>
+          <p><strong>10:30 AM — 11:30 AM</strong></p>
+          <p>Venkatachalapathi Temple, Tirunelveli.</p>
+          <span class="event-date">25 OCTOBER 2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="image-moment" data-bg="story_background">
+    <div class="moment-card reveal">
+      <div class="label">OUR JOURNEY</div>
+      <h2>From this moment,<br>our forever begins.</h2>
+      <p>We are grateful for every memory that brought us here, and excited for all the memories still waiting to be made.</p>
+    </div>
+  </section>
+
+  <section class="quote reveal">
+    <div class="quote-mark">“</div>
+    <blockquote>Together with our families,<br>we begin our journey of love and togetherness.</blockquote>
+    <small>WITH LOVE, LOGESH &amp; RAMYA</small>
+  </section>
+
+  <section class="image-moment" data-bg="quote_background">
+    <div class="moment-card reveal">
+      <div class="label">A DAY TO REMEMBER</div>
+      <h2>Come celebrate<br>love with us.</h2>
+      <p>Your presence, warm wishes and blessings will make these moments even more meaningful to us.</p>
+    </div>
+  </section>
+
+  <section class="venue" data-bg="venue_background" id="venue">
+    <div class="wrap">
+      <div class="venue-content reveal">
+        <div class="label">WEDDING VENUE</div>
+        <h2>Save the date.<br>Bring your smiles.</h2>
+        <div class="venue-card">
+          <strong>Venkatachalapathi Temple</strong>
+          <p>25 October 2026 · 10:30 AM — 11:30 AM<br>Tirunelveli, Tamil Nadu</p>
+        </div>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Venkatachalapathi+Temple+Tirunelveli" target="_blank" rel="noopener">OPEN WEDDING LOCATION ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-bg="footer_background">
+  <div class="footer-inner reveal">
+    <div class="mini-names">Logesh &amp; Ramya</div>
+    <p>24 · 10 · 2026 &nbsp; • &nbsp; 25 · 10 · 2026 &nbsp; • &nbsp; FOREVER STARTS HERE</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------
+   IMAGE LOADER
+   Edit the JSON at the top of this file to change images.
+   Every section uses a CSS background image so photos remain
+   beautifully cropped on desktop and mobile.
+--------------------------------------------------------- */
+const imageConfig = JSON.parse(document.getElementById('invitation-images').textContent);
+const fallback = imageConfig.fallbacks || {};
+
+function applyBackground(element, key){
+  const source = imageConfig[key];
+  const backup = fallback[key];
+  if(!source) return;
+  const probe = new Image();
+  probe.onload = () => {
+    element.style.backgroundImage = `url("${source}")`;
+  };
+  probe.onerror = () => {
+    if(backup) element.style.backgroundImage = `url("${backup}")`;
+  };
+  probe.src = source;
+}
+
+document.querySelectorAll('[data-bg]').forEach(el => applyBackground(el, el.dataset.bg));
+
+// Wedding countdown — 25 October 2026, 10:30 AM IST
+const weddingDate = new Date('2026-10-25T10:30:00+05:30').getTime();
+function updateTimer(){
+  let diff = Math.max(0, weddingDate - Date.now());
+  const days = Math.floor(diff / 86400000); diff %= 86400000;
+  const hours = Math.floor(diff / 3600000); diff %= 3600000;
+  const minutes = Math.floor(diff / 60000); diff %= 60000;
+  const seconds = Math.floor(diff / 1000);
+  document.getElementById('days').textContent = String(days).padStart(2,'0');
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
+updateTimer(); setInterval(updateTimer,1000);
+
+// Smooth scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Floating petals
+for(let i=0;i<12;i++){
+  const p=document.createElement('div');
+  p.className='petal';
+  p.style.left=(Math.random()*100)+'vw';
+  p.style.animationDuration=(8+Math.random()*9)+'s';
+  p.style.animationDelay=(-Math.random()*12)+'s';
+  document.body.appendChild(p);
+}
+</script>
+</body>
+</html>
